@@ -1,26 +1,24 @@
 const fs = require('fs')
 
-// promise dibuat
 function readFile() {
     return new Promise((resolve, reject) => {
-        fs.readFile('./data/games.json', 'UTF-8', (err, data) => {
+        fs.readFile('./data/games.json', 'utf-8', (err, data) => {
             if (err) {
                 reject(err)
-            }
-            else {
-                resolve(JSON.parse(data))
+            } else {
+                resolve(JSON.parse(data));
             }
         })
     })
 }
 
-// // Promise
+// promise 
 readFile()
-    .then(result => {
-        console.log(result)
+    .then((result) => {
+        console.log(result);
     })
-    .catch(error => {
-        console.log(error)
+    .catch((err) => {
+        console.log(err);
     })
 
 // Async await
