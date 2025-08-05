@@ -40,7 +40,8 @@ console.log('4. Pesanan bambang siap')
 ```
 
 # Bagaimana cara menghandle operasi asynchronus?
-Dengan menggunakan **Callback, Promise, Async await**
+Pada demo ini kita akan menggunakan **file system** untuk membaca sebuah file yang berisi data games.json, dimana kita akan menghandle proses asynchronusnya dengan 3 cara yaitu **Callback, Promise, Async await**. JSON adalah sebuah format data yang sering digunakan untuk menyimpan data dalam javascript.
+
 ## Callback 
 Callback adalah sebuah metode pemanggilan suatu function pada javascript, dimana suatu function dipanggil / di-eksekusi pada function lain dan menjadi sebuah paramater
 <br>
@@ -51,7 +52,7 @@ const fs = require('fs')
 
 fs.readFile('./data/games.json', 'utf-8', (err, data) => {
     if (err) console.log(err);
-    else console.log(JSON.parse(data));
+    else console.log(JSON.parse(data)); // JSON.parse digunakan untuk mengubah data dari json menjadi object javascript
 })
 // parameter ketiga disini adalah sebuah function yang dipassing sebagai parameter yang disebut callback, functionnya tidak ditrigger disini melainkan didalam function readFile dari file system
 ```
@@ -102,6 +103,16 @@ Async await adalah cara modern untuk menghandle proses asynchronus. Dasarnya tet
 ```js
 // menggunakan function readFile diatas yang sudah dibuat menjadi promise
 async function getData() {
+    try {
+        const data = await readFile()
+        console.log(data)
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+// arrow function
+const getData2 = async () => {
     try {
         const data = await readFile()
         console.log(data)
